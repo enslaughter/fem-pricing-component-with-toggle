@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:700">
+
+  <title>Frontend Mentor | Pricing Component with Toggle</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    html{
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    body{
+      font-family: "Montserrat", sans-serif;
+      font-size: 15px;
+      background-color: hsl(240, 78%, 98%);
+      background-image: url(images/bg-bottom.svg), url(images/bg-top.svg);
+      background-position: left bottom, right top;
+      background-repeat: no-repeat, no-repeat;
+      background-origin: border-box, content-box;
+      text-align: center;
+      color: hsl(232, 13%, 33%);
+
+      padding: 5vh 10vw;
+    }
+
+    .pricing-header{
+      margin: 1rem;
+    }
+
+    .page-header{
+      font-size: 2rem;
+      color: hsl(233, 13%, 49%);
+    }
+
+    .pricing-toggle{
+      font-size: 1rem;
+      color: hsl(234, 14%, 74%);
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+
+    #toggle{
+      width: 3.5rem;
+      background-image: linear-gradient(to bottom right, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+      border-radius: 2rem;
+      border: 0px solid white;
+      outline: 0px solid white;
+      box-shadow: none;
+      padding: 0.15rem;
+      margin: 1.5rem;
+    }
+
+    #toggle:hover{
+      cursor: pointer;
+    }
+
+    #toggle-indicator{
+      position: relative;
+      height: 1.4rem;
+      width: 1.4rem;
+      background-color: white;
+      border-radius: 50%;
+      display: inline-block;
+      top: 0.1rem;
+    }
+
+    .toggle-monthly{
+      position: relative;
+      left: 25%;
+    }
+
+    .toggle-annually{
+      position: relative;
+      right: 25%;
+    }
+
+    .pricing-cards{
+      display: flex;
+      flex-direction: row;
+      margin: 1rem;
+    }
+
+    .card{
+      flex: 1 1 0;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header{
+      padding-top: 0;
+    }
+
+    .basic, .master{
+      background-color: white;
+      color: hsl(233, 13%, 49%);
+      margin: 1rem 0rem;
+    }
+
+    .basic{
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+    }
+
+    .master{
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+    }
+
+    .pro{
+      background-image: linear-gradient(to bottom right, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+      color: white;
+      border-radius: 0.5rem;
+      /* The padding MUST be modified to inclue the side-card margin to make all the content level */
+      padding: 2rem 1.5rem;
+    }
+
+    .price-box{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      color: hsl(232, 13%, 33%);
+    }
+
+    .pro > .price-box{
+      color: white;
+    }
+
+    .price{
+      font-size: 2rem;
+      position: relative;
+      bottom: 5%;
+    }
+
+    .price-number{
+      font-size: 5rem;
+    }
+
+    .card-info-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-info-container > p{
+      flex 1 1 0;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    .card-info{
+      border-top: 1px solid hsl(236, 72%, 79%);
+    }
+
+    .bottom{
+      border-bottom: 1px solid hsl(236, 72%, 79%);
+    }
+
+    .card-info-pro{
+      border-top: 1px solid hsl(236, 72%, 79%);
+    }
+
+    .bottom-pro{
+      border-bottom: 1px solid hsl(236, 72%, 79%);
+    }
+
+    .learn-more{
+      margin-top: 1rem;
+      padding: 0.75rem;
+      width: 100%;
+      font-family: "Montserrat", sans-serif;
+      font-size: 15px;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      box-shadow: none;
+      border-radius: 0.5rem;
+    }
+
+    .learn-more:hover{
+      cursor: pointer;
+    }
+
+    .lm-white{
+      outline: 0px solid hsl(237, 63%, 64%);
+      color: white;
+      background-image: linear-gradient(to right, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+    }
+
+    .lm-white:hover{
+      border: 1px solid hsl(237, 63%, 64%);
+      color: hsl(237, 63%, 64%);
+      background-image: none;
+      background-color: white;
+    }
+
+    .lm-pro{
+      outline: 0px solid white;
+      color: hsl(237, 63%, 64%);
+      background-color: white;
+    }
+
+    .lm-pro:hover{
+      border: 1px solid white;
+      color: white;
+      background: none;
+    }
+
+    @media screen and (max-width: 480px){
+
+      body{
+        background-image: url("images/bg-top.svg");
+        background-position: top -10vw left 50vw;
+        background-repeat: no-repeat;
+        background-size: auto;
+      }
+      .pricing-cards{
+        flex-direction: column;
+      }
+
+      .card{
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+
+      .price{
+        font-size: 1.5rem;
+      }
+
+      .price-number{
+        font-size: 3.75rem;
+      }
+
+    }
+  </style>
+</head>
+<body>
+<div class="page-header">
+  <p class="pricing-header">Our Pricing</p>
+  <div class="pricing-toggle">
+  <div>Annually</div>
+  <button id="toggle" onclick="switchPricing()"><span id="toggle-indicator" class="toggle-monthly"></span></button>
+  <div>Monthly</div>
+  </div>
+
+</div>
+<div class="pricing-cards">
+  <div class="card basic">
+    <p class="card-header">Basic</p>
+    <div class="price-box"><span class="price">&dollar;</span><span class="price-number" id="basic-price">19.99</span></div>
+    <div class="card-info-container">
+      <p class="card-info"> 500 GB Storage </p>
+      <p class="card-info"> 2 Users Allowed </p>
+      <p class="card-info bottom"> Send up to 3 GB </p>
+    </div>
+    <button class="learn-more lm-white">Learn More</button>
+  </div>
+
+  <div class="card pro">
+    <p class="card-header">Professional</p>
+    <div class="price-box"><span class="price">&dollar;</span><span class="price-number" id="pro-price">24.99</span></div>
+    <div class="card-info-container">
+      <p class="card-info-pro"> 1 TB Storage </p>
+      <p class="card-info-pro"> 5 Users Allowed </p>
+      <p class="card-info-pro bottom-pro"> Send up to 10 GB </p>
+    </div>
+    <button class="learn-more lm-pro">Learn More</button>
+  </div>
+
+  <div class="card master">
+    <p class="card-header">Master</p>
+    <div class="price-box"><span class="price">&dollar;</span><span class="price-number" id="master-price">39.99</span></div>
+    <div class="card-info-container">
+      <p class="card-info"> 2 TB Storage </p>
+      <p class="card-info"> 10 Users Allowed </p>
+      <p class="card-info bottom"> Send up to 20 GB </p>
+    </div>
+    <button class="learn-more lm-white">Learn More</button>
+  </div>
+</div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Eli Slaughter</a>.
+  </div>
+
+  <script>
+    const toggleIndicator = document.getElementById("toggle-indicator");
+
+    const priceMonthlyBasic = "19.99";
+    const priceMonthlyPro = "24.99";
+    const priceMonthlyMaster = "39.99";
+
+    const priceAnnuallyBasic = "199.99";
+    const priceAnnuallyPro = "249.99";
+    const priceAnnuallyMaster = "399.99";
+
+    var stateMonthly = true;
+
+    function switchPricing(){
+      if (stateMonthly == false){
+        setMonthlyPricing();
+      }
+      else{
+        setAnnuallyPricing();
+      }
+
+      function setMonthlyPricing(){
+        toggleIndicator.className = "toggle-monthly";
+        stateMonthly = true;
+
+        document.getElementById("basic-price").innerHTML = priceMonthlyBasic;
+        document.getElementById("pro-price").innerHTML = priceMonthlyPro;
+        document.getElementById("master-price").innerHTML = priceMonthlyMaster;
+      }
+
+      function setAnnuallyPricing(){
+        toggleIndicator.className = "toggle-annually";
+        stateMonthly = false;
+
+        document.getElementById("basic-price").innerHTML = priceAnnuallyBasic;
+        document.getElementById("pro-price").innerHTML = priceAnnuallyPro;
+        document.getElementById("master-price").innerHTML = priceAnnuallyMaster;
+      }
+    }
+
+  </script>
+</body>
+</html>
